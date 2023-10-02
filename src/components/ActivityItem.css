@@ -1,0 +1,45 @@
+body {
+    background-color: whitesmoke;
+}
+
+input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+    background-color: white;
+position: relative;
+outline: none;
+transform: rotate(45deg);
+appearance: none;
+-webkit-appearance:none;
+}
+
+input[type="checkbox"]:before {
+    position: absolute;
+    content: "";
+    background-color: white;
+    height: 60%;
+    width: 100%;
+    top:-59%;
+    border-radius: 75px 75px 0 0;
+
+}
+
+input[type="checkbox"]:after {
+    position: absolute;
+    content: "";
+    background-color: white;
+    height: 60%;
+    width: 100%;
+    top: 20%;
+    border-radius: 75px 75px 0 0;
+    transform: rotate(-90deg);
+    right: 79%;
+
+}
+
+input[type="checkbox"]:checked,
+input:checked[type="checkbox"]:before, 
+input:checked[type="checkbox"]:after
+{
+    background-color: red;
+}
