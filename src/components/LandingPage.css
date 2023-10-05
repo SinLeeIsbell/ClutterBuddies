@@ -1,0 +1,39 @@
+body {
+  background-image: url("./back.jpg");
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.landing-page {
+  position: relative;
+  height: 60vh;
+}
+
+.info-container {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(213, 135, 145, 0.6);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: black;
+}
+
+.main-content {
+  color: gold;
+}
+
+.secondary-content {
+  position: relative;
+  top: 70px;
+  left: 270px;
+  background-color: rgba(114, 192, 184, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}

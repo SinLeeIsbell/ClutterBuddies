@@ -16,6 +16,7 @@ const AcvitiesList = () => {
           id={activity.id}
           title={activity.title}
           completed={activity.completed}
+          notes={activity.notes}
         />
       ))}
     </ul>

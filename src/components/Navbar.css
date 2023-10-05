@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0 0 0 5px rgb(2, 25, 19, 0.5);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.homeLink {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  margin-left: 15px;
+}
+
+.navLinks {
+  display: flex;
+  list-style-type: none;
+}
+
+.nav1 {
+  text-decoration: none;
+  color: white;
+  padding-right: 20px;
+}
+
+.nav2 {
+  text-decoration: none;
+  color: white;
+  padding-right: 20px;
+}
+
+.initialHolder {
+  background-color: rgba(114, 192, 184);
+  border-radius: 50%;
+  color: gold;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  text-decoration: none;
+  padding: 7px;
+  box-shadow: 0 0 0 2px rgba(213, 135, 145);
+}

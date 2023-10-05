@@ -1,37 +1,56 @@
 import { useDispatch } from "react-redux";
-import { toggleComplete } from "./features/activitiesSlice";
-import { deleteActivity } from "./features/activitiesSlice";
-import './ActivityItem.css'
+import { toggleComplete } from "./reducers/activitiesSlice";
+import { deleteActivity } from "./reducers/activitiesSlice";
+import { useState } from "react";
+import "./ActivityItem.css";
 
-const ActivityItem = ({ id, title, completed }) => {
+const ActivityItem = ({ id, title, completed, notes }) => {
   const dispatch = useDispatch();
+  const [showDetails, setShowDetails] = useState(false);
 
   const handleCompleteClick = () => {
-    dispatch(toggleComplete({ id: id, completed: !completed })
-	//now when completed is toggled, it flips state
-	);
+    dispatch(
+      toggleComplete({ id: id, completed: !completed })
+      //now when completed is toggled, it flips state
+    );
   };
 
   const handleDeleteClick = () => {
-	dispatch(deleteActivity({id: id})) //we pass in the id as payload so it knows which one to target
-  }
+    dispatch(deleteActivity({ id: id })); //we pass in the id as payload so it knows which one to target
+  };
   //call the dispatch function and pass in the action we want to dispatch
   //reducer needs to know the id of the item and the new completed value as payload object
+
+  const toggleDetails = () => {
+    setShowDetails(!showDetails); //to its opposite because we are toggling back and forth
+  };
+
+  console.log("Notes:", notes, title);
+
   return (
-    <li className={`groupItem ${completed && "itemSuccess"}`}>
-      <div>
-        <span>
-          <input 
-		  type="checkbox" 
-		  checked={completed}
-		  onChange={handleCompleteClick}>
-		  </input>
-          {title}
-        </span>
-        <button onClick={handleDeleteClick}
-		>Delete</button>
-      </div>
-    </li>
+    <div className="everyActivity">
+      <li className={`groupItem ${completed && "itemSuccess"}`}>
+        <div className="eachActivityLine">
+          <span>
+            <input
+              className=""
+              type="checkbox"
+              checked={completed}
+              onChange={handleCompleteClick}
+            ></input>{" "}
+          </span>
+
+          <span onClick={toggleDetails}>{title}</span>
+          {showDetails && (
+            <div>
+              <span>{notes}</span>
+            </div>
+          )}
+
+          <button onClick={handleDeleteClick}>Delete</button>
+        </div>
+      </li>
+    </div>
   );
 };
 

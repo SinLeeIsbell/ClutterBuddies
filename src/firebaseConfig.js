@@ -1,24 +1,25 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import {getFirestore} from 'firebase/firestore'
+import { getAuth } from "firebase/auth"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyD4K9siKdI7gZEqmn1V17qGEQcAi6Jf_7I",
-  authDomain: "trail-tales-f5fd9.firebaseapp.com",
-  projectId: "trail-tales-f5fd9",
-  storageBucket: "trail-tales-f5fd9.appspot.com",
-  messagingSenderId: "977669159438",
-  appId: "1:977669159438:web:bc378e28de0d1de59c5a5f",
-  measurementId: "G-CG634W59E3",
+  apiKey: "AIzaSyAFQq4orXhWSbuFYJo0iITsCFEA8ilr7DA",
+  authDomain: "clutterbuddies-40f85.firebaseapp.com",
+  projectId: "clutterbuddies-40f85",
+  storageBucket: "clutterbuddies-40f85.appspot.com",
+  messagingSenderId: "898194430691",
+  appId: "1:898194430691:web:37111bc64a089f022003d6",
+  measurementId: "G-RJ04NCVVL2"
 };
 
+
 // Initialize Firebase
-//this is my own renaming
-export const appInit = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(appInit);
-
-
+export const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);
+export const database = getFirestore(app);
+export const auth = getAuth(app)
