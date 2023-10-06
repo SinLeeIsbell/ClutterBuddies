@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
-import store from "./store/activities.js";
+import store from "./components/store/activities.js"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import LandingPage from "./components/LandingPage.jsx";

@@ -19,10 +19,9 @@ class SignUp extends Component {
   //we have two fields that can change so we target the id and then that value to change
 
   handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
-    console.log("Form submit with data:", this.state
-    )
+    console.log("Form submit with data:", this.state);
   };
 
   render() {

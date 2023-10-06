@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 const AllCompletedItems = () => {
   // useSelector(state) gives us the complete state tree to start
-  const totalActivities = useSelector((state) => state.activities);
+  const totalActivities = useSelector((state) => state.activities.activities);
 
   const completedItems = totalActivities.filter(
     (activity) => activity.completed

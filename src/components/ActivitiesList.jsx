@@ -1,8 +1,8 @@
 import ActivityItem from "./ActivityItem";
 import { useSelector } from "react-redux";
 
-const AcvitiesList = () => {
-  const activities = useSelector((state) => state.activities);
+const ActivitiesList = () => {
+  const activities = useSelector((state) => state.activities.activities);
   //this accepts the state which is passed in by redux
   //this will go to the store, check all the activities in state
   //and assign it to the activites variable
@@ -13,6 +13,7 @@ const AcvitiesList = () => {
     <ul className="activityMap">
       {activities.map((activity) => (
         <ActivityItem
+        key={activity.id}
           id={activity.id}
           title={activity.title}
           completed={activity.completed}
@@ -23,4 +24,4 @@ const AcvitiesList = () => {
   );
 };
 
-export default AcvitiesList;
+export default ActivitiesList;

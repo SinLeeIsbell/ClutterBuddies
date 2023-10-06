@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
-import { addActivity } from "./reducers/activitiesSlice";
+// import { addActivity } from "./reducers/activitiesSlice";
 import { useState } from "react";
+import { addActivityToFirebase } from './reducers/activitiesSlice'
+
 
 const AddActivityForm = () => {
   const [value, setValue] = useState({ title: "", notes: "" });
@@ -10,7 +12,8 @@ const AddActivityForm = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     if (value.title.trim() !== "" && value.notes.trim() !== "") {
-      dispatch(addActivity(value));
+      // dispatch(addActivity(value));
+      dispatch(addActivityToFirebase(value))
       setValue({ title: "", notes: "" });
     }
   };
