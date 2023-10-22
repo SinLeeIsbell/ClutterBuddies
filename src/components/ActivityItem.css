@@ -46,5 +46,5 @@ input:checked[type="checkbox"]:after {
     justify-content: space-between;
     padding: 20px;
     border: solid white;
-    width: 400px;
+    width: 500px;
 }

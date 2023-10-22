@@ -3,11 +3,6 @@ import { useSelector } from "react-redux";
 
 const ActivitiesList = () => {
   const activities = useSelector((state) => state.activities.activities);
-  //this accepts the state which is passed in by redux
-  //this will go to the store, check all the activities in state
-  //and assign it to the activites variable
-  //if you have multiple slices of state, this returns the whole thing which is why you
-  //specify the reducer you are using for this one
 
   return (
     <ul className="activityMap">

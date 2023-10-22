@@ -12,10 +12,10 @@ body {
 }
 
 .container {
-  max-width: 1200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
 }
 
 .homeLink {
@@ -51,4 +51,5 @@ body {
   text-decoration: none;
   padding: 7px;
   box-shadow: 0 0 0 2px rgba(213, 135, 145);
+  margin-right: 15px;
 }

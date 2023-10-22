@@ -13,11 +13,9 @@ class SignIn extends Component {
     });
   };
 
-  //we have two fields that can change so we target the id and then that value to change
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
   };
 
   render() {

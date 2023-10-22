@@ -11,7 +11,7 @@ const Navbar = () => {
           ClutterBuddies
         </Link>
         <SignedIn />
-        <SignedOut />
+        {/* <SignedOut /> */}
       </div>
     </nav>
   );

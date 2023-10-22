@@ -15,7 +15,6 @@ function App() {
     dispatch(fetchActivities());
   }, []);
 
-  console.log("activities in app:", activities);
 
   return (
     <div className="fullContainer">

@@ -1,9 +1,7 @@
 import { useDispatch } from "react-redux";
 import {
   editCompleteFirebase,
-  // toggleComplete,
 } from "./reducers/activitiesSlice";
-// import { deleteActivity } from "./reducers/activitiesSlice";
 import { useState } from "react";
 import { deleteActivityFromFirebase } from "./reducers/activitiesSlice";
 import "./ActivityItem.css";
@@ -13,24 +11,26 @@ const ActivityItem = ({ id, title, completed, notes }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   const handleCompleteClick = () => {
-    // dispatch(
-    // toggleComplete({ id: id, completed: !completed })
     dispatch(editCompleteFirebase({ id, title, completed: !completed, notes }));
-    //now when completed is toggled, it flips state
   };
 
   const handleDeleteClick = () => {
-    // dispatch(deleteActivity({ id: id }));
-    dispatch(deleteActivityFromFirebase(id)); //we pass in the id as payload so it knows which one to target
+    dispatch(deleteActivityFromFirebase(id));
   };
-  //call the dispatch function and pass in the action we want to dispatch
-  //reducer needs to know the id of the item and the new completed value as payload object
 
   const toggleDetails = () => {
-    setShowDetails(!showDetails); //to its opposite because we are toggling back and forth
+    setShowDetails(!showDetails); 
   };
 
-  console.log("Notes:", notes, title);
+  function capitalizeWords(str) {
+    return str
+      .toLowerCase()
+      .split(" ") //if you don't put a space in here, it will split on each character instead of each word!
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" "); //if you don't put a space in here, it will not put spaces between the rejoined words
+  }
+
+  const hasNotes = notes && notes.trim() !== "";
 
   return (
     <div className="everyActivity">
@@ -45,14 +45,16 @@ const ActivityItem = ({ id, title, completed, notes }) => {
             ></input>{" "}
           </span>
 
-          <span onClick={toggleDetails}>{title}</span>
-          {showDetails && (
+          <span onClick={toggleDetails}>{capitalizeWords(title)}</span>
+          {showDetails && hasNotes && (
             <div>
-              <span>{notes}</span>
+              <span>{capitalizeWords(notes)}</span>
             </div>
           )}
 
-          <button onClick={handleDeleteClick}>Delete</button>
+          <button onClick={handleDeleteClick} className="coralBtn">
+            Delete
+          </button>
         </div>
       </li>
     </div>

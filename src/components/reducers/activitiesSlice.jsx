@@ -7,6 +7,8 @@ import {
   addDoc,
   deleteDoc,
   updateDoc,
+  query,
+  orderBy,
 } from "firebase/firestore";
 
 const initialState = {
@@ -18,8 +20,12 @@ const initialState = {
 export const fetchActivities = createAsyncThunk(
   "activities/fetch",
   async () => {
-    const querySnapshot = await getDocs(collection(databaseFire, "activities"));
+    const q = query(collection(databaseFire, "activities"), orderBy("completed", "asc"))
+    const querySnapshot = await getDocs(q);
     const activitiesArr = [];
+
+    
+
     querySnapshot.forEach((doc) => {
       const { title, completed, notes } = doc.data();
       activitiesArr.push({
@@ -36,13 +42,11 @@ export const fetchActivities = createAsyncThunk(
 export const addActivityToFirebase = createAsyncThunk(
   "activities/addToFirebase",
   async (newActivity, thunkAPI) => {
-    console.log("new activity in thunk value:", newActivity);
     newActivity.completed = false;
     const docRef = await addDoc(
       collection(databaseFire, "activities"),
       newActivity
     );
-    console.log("docRef returns:", docRef, docRef.id);
     newActivity.id = docRef.id;
     return newActivity;
   }
@@ -51,7 +55,6 @@ export const addActivityToFirebase = createAsyncThunk(
 export const deleteActivityFromFirebase = createAsyncThunk(
   "activities/deleteFromFirebase",
   async (activityID, thunkAPI) => {
-    console.log("thing I'm deleting:", activityID);
     await deleteDoc(doc(databaseFire, "activities", activityID));
     return activityID;
   }
@@ -60,14 +63,13 @@ export const deleteActivityFromFirebase = createAsyncThunk(
 export const editCompleteFirebase = createAsyncThunk(
   "activities/editComplete",
   async (newState, thunkAPI) => {
-    console.log("Item I am editing:", newState);
-    const toEdit = doc(databaseFire, "activities", newState.id)
+    const toEdit = doc(databaseFire, "activities", newState.id);
     await updateDoc(toEdit, {
       title: newState.title,
       completed: newState.completed,
-      notes: newState.notes
+      notes: newState.notes,
     });
-    return newState
+    return newState;
   }
 );
 
@@ -104,7 +106,6 @@ const activitiesSlice = createSlice({
       .addCase(fetchActivities.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.activities = action.payload;
-        console.log("fetch payload", action.payload);
       })
       .addCase(fetchActivities.rejected, (state, action) => {
         state.status = "failed";
@@ -121,30 +122,15 @@ const activitiesSlice = createSlice({
         state.status = "succeeded";
       })
       .addCase(editCompleteFirebase.rejected, (state, action) => {
-        state.status = "failed"
-        state.error = action.error.message
-        console.log(action.error.message)
+        state.status = "failed";
+        state.error = action.error.message;
       })
       .addCase(editCompleteFirebase.fulfilled, (state, action) => {
-        console.log("action for edit:", action);
-        const index = state.activities.findIndex(activity => activity.id === action.payload.id)
-        console.log("index:",  index)
-        state.activities[index] = action.payload
-        
-        // );
-      
-        // state.status
+        const index = state.activities.findIndex(
+          (activity) => activity.id === action.payload.id
+        );
+        state.activities[index] = action.payload;
       });
-    // .addCase(addActivity.fulfilled, (state, action) => {
-    //   state.activities.push(action.payload);
-    //   state.status = "succeeded";
-    // })
-    // .addCase(deleteActivity.fulfilled, (state, action) => {
-    //   state.activities = state.activities.filter(
-    //     (activity) => activity.id !== action.payload
-    //   );
-    //   state.status = "succeeded";
-    // });
   },
 });
 

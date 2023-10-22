@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage.jsx";
 import SignIn from "./components/auth/SignIn.jsx";
 import SignUp from "./components/auth/SignUp.jsx";
 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>

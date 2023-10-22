@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-//navlink shows active when on that page
 
 const SignedOut = () => {
   return (
